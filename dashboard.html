@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema AEE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="Santa Branca Logo.png" alt="Prefeitura de Santa Branca" class="logo-sidebar">
+                <h2>Sistema AEE</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span class="icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="estudantes.html" class="nav-item">
+                    <span class="icon">👨‍🎓</span>
+                    Estudantes
+                </a>
+                <a href="anamnese.html" class="nav-item" id="menuAnamnese">
+                    <span class="icon">📋</span>
+                    Gerenciar Anamnese
+                </a>
+                <a href="preencher.html" class="nav-item" id="menuPreencher">
+                    <span class="icon">✏️</span>
+                    Preencher Anamnese
+                </a>
+                <a href="#" class="nav-item" id="btnLogout">
+                    <span class="icon">🚪</span>
+                    Sair
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div id="userInfo" class="user-info">
+                    <span class="user-name">Carregando...</span>
+                    <span class="user-role"></span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Dashboard</h1>
+                <div class="header-actions">
+                    <span id="currentDate"></span>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">👨‍🎓</div>
+                        <div class="stat-info">
+                            <h3 id="totalEstudantes">0</h3>
+                            <p>Estudantes Ativos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">📋</div>
+                        <div class="stat-info">
+                            <h3 id="totalPlanos">0</h3>
+                            <p>Planos Ativos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">📅</div>
+                        <div class="stat-info">
+                            <h3 id="totalAtendimentos">0</h3>
+                            <p>Atendimentos (Mês)</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">⭐</div>
+                        <div class="stat-info">
+                            <h3 id="totalAvaliacoes">0</h3>
+                            <p>Avaliações</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Ações Rápidas</h2>
+                    <div class="actions-grid">
+                        <a href="estudantes.html?action=new" class="action-card">
+                            <span class="action-icon">➕</span>
+                            <h4>Novo Estudante</h4>
+                            <p>Cadastrar novo estudante</p>
+                        </a>
+                        <a href="anamnese.html?action=new" class="action-card">
+                            <span class="action-icon">📝</span>
+                            <h4>Nova Pergunta</h4>
+                            <p>Adicionar pergunta à anamnese</p>
+                        </a>
+                        <a href="preencher.html" class="action-card">
+                            <span class="action-icon">✏️</span>
+                            <h4>Preencher Anamnese</h4>
+                            <p>Responder questionário</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recent Students -->
+                <div class="recent-students">
+                    <h2>Últimos Cadastros</h2>
+                    <div id="recentStudentsList" class="students-list">
+                        <p>Carregando...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

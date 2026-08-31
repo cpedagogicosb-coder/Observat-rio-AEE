@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Anamnese - Sistema AEE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="Santa Branca Logo.png" alt="Prefeitura de Santa Branca" class="logo-sidebar">
+                <h2>Sistema AEE</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="estudantes.html" class="nav-item">
+                    <span class="icon">👨‍🎓</span>
+                    Estudantes
+                </a>
+                <a href="anamnese.html" class="nav-item active">
+                    <span class="icon">📋</span>
+                    Gerenciar Anamnese
+                </a>
+                <a href="preencher.html" class="nav-item" id="menuPreencher">
+                    <span class="icon">✏️</span>
+                    Preencher Anamnese
+                </a>
+                <a href="#" class="nav-item" id="btnLogout">
+                    <span class="icon">🚪</span>
+                    Sair
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div id="userInfo" class="user-info">
+                    <span class="user-name">Carregando...</span>
+                    <span class="user-role"></span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Gerenciar Anamnese</h1>
+                <button class="btn-primary" onclick="showPerguntaModal()">+ Nova Pergunta</button>
+            </header>
+
+            <div class="content">
+                <!-- Categorias -->
+                <div class="table-container" style="margin-bottom: 20px;">
+                    <h3>Categorias</h3>
+                    <div id="categoriasList"></div>
+                </div>
+
+                <!-- Perguntas -->
+                <div class="table-container">
+                    <h3>Perguntas da Anamnese</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ordem</th>
+                                <th>Pergunta</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Obrigatória</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="perguntasTableBody">
+                            <tr>
+                                <td colspan="6" style="text-align: center;">Carregando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para Nova/Editar Pergunta -->
+    <div id="perguntaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalPerguntaTitle">Nova Pergunta</h2>
+                <button class="modal-close" onclick="closePerguntaModal()">×</button>
+            </div>
+            <form id="perguntaForm">
+                <input type="hidden" id="editPerguntaId">
+                <div class="form-group">
+                    <label for="categoriaId">Categoria *</label>
+                    <select id="categoriaId" required>
+                        <option value="">Selecione uma categoria</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="perguntaTexto">Pergunta *</label>
+                    <input type="text" id="perguntaTexto" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipoResposta">Tipo de Resposta *</label>
+                    <select id="tipoResposta" required>
+                        <option value="texto_curto">Texto Curto</option>
+                        <option value="texto_longo">Texto Longo</option>
+                        <option value="multipla_escolha">Múltipla Escolha</option>
+                        <option value="sim_nao">Sim/Não</option>
+                        <option value="numero">Número</option>
+                        <option value="data">Data</option>
+                    </select>
+                </div>
+                <div class="form-group" id="opcoesGroup" style="display: none;">
+                    <label for="opcoesResposta">Opções (uma por linha)</label>
+                    <textarea id="opcoesResposta" rows="3" placeholder="Opção 1&#10;Opção 2&#10;Opção 3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="obrigatorio">
+                        Obrigatória
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closePerguntaModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/anamnese.js"></script>
+</body>
+</html>

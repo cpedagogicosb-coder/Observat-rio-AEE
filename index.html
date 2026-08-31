@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema AEE - Santa Branca</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="login-container">
+        <!-- A imagem de fundo é definida no CSS -->
+        <!-- O CSS usa: background-image: url('../Imagem1.png') -->
+        
+        <div class="login-box">
+            <div class="login-header">
+                <!-- Logo da Prefeitura de Santa Branca -->
+                <div class="logo-container">
+                    <img src="Santa Branca Logo.png" alt="Prefeitura de Santa Branca" class="logo-image">
+                </div>
+                <h1>Sistema AEE</h1>
+                <p>Atendimento Educacional Especializado</p>
+                <p class="subtitle">Secretaria Municipal de Educação</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                </div>
+                <button type="submit" class="btn-login">Entrar</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+            
+            <div class="login-footer">
+                <p>Prefeitura de Santa Branca - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

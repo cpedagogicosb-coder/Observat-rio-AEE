@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudantes - Sistema AEE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="Santa Branca Logo.png" alt="Prefeitura de Santa Branca" class="logo-sidebar">
+                <h2>Sistema AEE</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="estudantes.html" class="nav-item active">
+                    <span class="icon">👨‍🎓</span>
+                    Estudantes
+                </a>
+                <a href="anamnese.html" class="nav-item" id="menuAnamnese">
+                    <span class="icon">📋</span>
+                    Gerenciar Anamnese
+                </a>
+                <a href="preencher.html" class="nav-item" id="menuPreencher">
+                    <span class="icon">✏️</span>
+                    Preencher Anamnese
+                </a>
+                <a href="#" class="nav-item" id="btnLogout">
+                    <span class="icon">🚪</span>
+                    Sair
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div id="userInfo" class="user-info">
+                    <span class="user-name">Carregando...</span>
+                    <span class="user-role"></span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Estudantes</h1>
+                <button class="btn-primary" onclick="showModal()">+ Novo Estudante</button>
+            </header>
+
+            <div class="content">
+                <div class="table-container">
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="searchInput" placeholder="Buscar estudante..." 
+                               style="padding: 8px 12px; border: 2px solid #e0e0e0; border-radius: 6px; width: 300px;">
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Matrícula</th>
+                                <th>Escola</th>
+                                <th>Turma</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="estudantesTableBody">
+                            <tr>
+                                <td colspan="5" style="text-align: center;">Carregando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para Novo/Editar Estudante -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Novo Estudante</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <form id="studentForm">
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="dataNascimento">Data de Nascimento *</label>
+                    <input type="date" id="dataNascimento" required>
+                </div>
+                <div class="form-group">
+                    <label for="matricula">Matrícula</label>
+                    <input type="text" id="matricula">
+                </div>
+                <div class="form-group">
+                    <label for="escola">Escola *</label>
+                    <input type="text" id="escola" required>
+                </div>
+                <div class="form-group">
+                    <label for="turma">Turma</label>
+                    <input type="text" id="turma">
+                </div>
+                <div class="form-group">
+                    <label for="turno">Turno</label>
+                    <select id="turno">
+                        <option value="">Selecione</option>
+                        <option value="matutino">Matutino</option>
+                        <option value="vespertino">Vespertino</option>
+                        <option value="noturno">Noturno</option>
+                        <option value="integral">Integral</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="responsavel">Responsável *</label>
+                    <input type="text" id="responsavel" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone do Responsável</label>
+                    <input type="text" id="telefone">
+                </div>
+                <div class="form-group">
+                    <label for="diagnostico">Diagnóstico Principal</label>
+                    <textarea id="diagnostico" rows="2"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/estudantes.js"></script>
+</body>
+</html>
